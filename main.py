@@ -30,5 +30,6 @@ gatherStats('Barbunya', 'Perimeter', barbunya)
 gatherStats('Barbunya', 'roundness', barbunya)
 
 # TODO: Charts
-
+areaBarPlot = sb.barplot(data=dataClean, x="Class", y="Area")
+mpl.pyplot.show()
 # TODO: Regression/Classification model
