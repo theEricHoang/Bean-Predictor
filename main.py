@@ -13,11 +13,21 @@ seker = dataByClass.get_group('SEKER')
 barbunya = dataByClass.get_group('BARBUNYA')
 bombay = dataByClass.get_group('BOMBAY')
 cali = dataByClass.get_group('CALI')
-dermosan = dataByClass.get_group('DERMOSAN')
+dermason = dataByClass.get_group('DERMASON')
 horoz = dataByClass.get_group('HOROZ')
 sira = dataByClass.get_group('SIRA')
 
 # TODO: gather stats for 2 or 3 classes of beans. only need to do mean, median, variance, std, etc. for AREA, PERIMETER, and ROUNDNESS
+def gatherStats(type, stat, group):
+    print(type, stat, 'mean:', group[stat].mean())
+    print(type, stat, 'median:', group[stat].median())
+    print(type, stat, 'variance:', group[stat].var())
+    print(type, stat, 'standard deviation:', group[stat].std())
+    print()
+# BARBUNYA STATS
+gatherStats('Barbunya', 'Area', barbunya)
+gatherStats('Barbunya', 'Perimeter', barbunya)
+gatherStats('Barbunya', 'roundness', barbunya)
 
 # TODO: Charts
 
