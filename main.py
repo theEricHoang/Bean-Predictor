@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib as mpl
+from sklearn.model_selection import train_test_split
 import seaborn as sb
 import os
 
@@ -28,6 +29,36 @@ def gatherStats(type, stat, group):
 gatherStats('Barbunya', 'Area', barbunya)
 gatherStats('Barbunya', 'Perimeter', barbunya)
 gatherStats('Barbunya', 'roundness', barbunya)
+
+# BOMBAY STATS
+gatherStats('Bombay', 'Area', bombay)
+gatherStats('Bombay', 'Perimeter', bombay)
+gatherStats('Bombay', 'roundness', bombay)
+
+# SEKER STATS
+gatherStats('Seker', 'Area', seker)
+gatherStats('Seker', 'Perimeter', seker)
+gatherStats('Seker', 'roundness', seker)
+
+# CALI STATS
+gatherStats('Cali', 'Area', cali)
+gatherStats('Cali', 'Perimeter', cali)
+gatherStats('Cali', 'roundness', cali)
+
+# DERMASON STATS
+gatherStats('Dermason', 'Area', dermason)
+gatherStats('Dermason', 'Perimeter', dermason)
+gatherStats('Dermason', 'roundness', dermason)
+
+# HOROZ STATS
+gatherStats('Horoz', 'Area', horoz)
+gatherStats('Horoz', 'Perimeter', horoz)
+gatherStats('Horoz', 'roundness', horoz)
+
+# SIRA STATS
+gatherStats('Sira', 'Area', sira)
+gatherStats('Sira', 'Perimeter', sira)
+gatherStats('Sira', 'roundness', sira)
 
 # TODO: Charts
 
