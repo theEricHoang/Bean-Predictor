@@ -41,6 +41,7 @@ dataCleanSamp = dataClean.sample(1000)
 
 # charts
 sb.set_palette("Set3")
+sb.set(font_scale=0.6)
 
 fig, axs = mpl.pyplot.subplots(ncols=4)
 areaBar = sb.barplot(data=dataClean, x="Class", y="Area", ax=axs[0]).set_title("Avg Area for Each Bean Class")
