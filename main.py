@@ -1,7 +1,8 @@
-import numpy as np
+# CS 1302 PROJECT
+# by: ERIC HOANG, RYAN PHAM, & TAOFFEK ADEYANJU
+
 import pandas as pd
 import matplotlib as mpl
-from sklearn.model_selection import train_test_split
 import seaborn as sb
 import os
 
@@ -9,22 +10,22 @@ data = pd.read_excel(os.path.join(os.path.dirname(__file__), 'Dry_Bean_Dataset.x
 dataClean = data.dropna() # clean data
 dataByClass = data.groupby('Class')
 
-# splitting data by class of bean
-seker = dataByClass.get_group('SEKER')
+# splitting data by class of bean. uncomment bean group var if u need to use it
+#seker = dataByClass.get_group('SEKER')
 barbunya = dataByClass.get_group('BARBUNYA')
 bombay = dataByClass.get_group('BOMBAY')
-cali = dataByClass.get_group('CALI')
-dermason = dataByClass.get_group('DERMASON')
-horoz = dataByClass.get_group('HOROZ')
-sira = dataByClass.get_group('SIRA')
+#cali = dataByClass.get_group('CALI')
+#dermason = dataByClass.get_group('DERMASON')
+#horoz = dataByClass.get_group('HOROZ')
+#sira = dataByClass.get_group('SIRA')
 
-# TODO: gather stats for 2 or 3 classes of beans. only need to do mean, median, variance, std, etc. for AREA, PERIMETER, and ROUNDNESS
 def gatherStats(type, stat, group):
     print(type, stat, 'mean:', group[stat].mean())
     print(type, stat, 'median:', group[stat].median())
     print(type, stat, 'variance:', group[stat].var())
     print(type, stat, 'standard deviation:', group[stat].std())
     print()
+
 # BARBUNYA STATS
 gatherStats('Barbunya', 'Area', barbunya)
 gatherStats('Barbunya', 'Perimeter', barbunya)
@@ -35,33 +36,16 @@ gatherStats('Bombay', 'Area', bombay)
 gatherStats('Bombay', 'Perimeter', bombay)
 gatherStats('Bombay', 'roundness', bombay)
 
-# SEKER STATS
-gatherStats('Seker', 'Area', seker)
-gatherStats('Seker', 'Perimeter', seker)
-gatherStats('Seker', 'roundness', seker)
+# smaller sample of data for scatter plots
+dataCleanSamp = dataClean.sample(1000)
 
-# CALI STATS
-gatherStats('Cali', 'Area', cali)
-gatherStats('Cali', 'Perimeter', cali)
-gatherStats('Cali', 'roundness', cali)
+# charts
+sb.set_palette("Set3")
 
-# DERMASON STATS
-gatherStats('Dermason', 'Area', dermason)
-gatherStats('Dermason', 'Perimeter', dermason)
-gatherStats('Dermason', 'roundness', dermason)
-
-# HOROZ STATS
-gatherStats('Horoz', 'Area', horoz)
-gatherStats('Horoz', 'Perimeter', horoz)
-gatherStats('Horoz', 'roundness', horoz)
-
-# SIRA STATS
-gatherStats('Sira', 'Area', sira)
-gatherStats('Sira', 'Perimeter', sira)
-gatherStats('Sira', 'roundness', sira)
-
-# TODO: Charts
-areaBarPlot = sb.barplot(data=dataClean, x="Class", y="Area")
-# more plots
+fig, axs = mpl.pyplot.subplots(ncols=4)
+areaBar = sb.barplot(data=dataClean, x="Class", y="Area", ax=axs[0]).set_title("Avg Area for Each Bean Class")
+roundnessBar = sb.barplot(data=dataClean, x="Class", y="roundness", ax=axs[1]).set_title("Avg Roundness for Each Bean Class")
+roundVsAreaScatter = sb.scatterplot(data=dataCleanSamp, x="roundness", y="Area", hue="Class", ax=axs[2], size=0.00001).set_title("Roundness vs Area")
+lwRatioScatter = sb.scatterplot(data=dataCleanSamp, x="MajorAxisLength", y="MinorAxisLength", hue="Class", ax=axs[3], size=0.00001).set_title("Length vs Width")
+# display plots
 mpl.pyplot.show()
-# TODO: Regression/Classification model
